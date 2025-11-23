@@ -27,9 +27,9 @@ export default function DownloadButton({ data, filename, format }: DownloadButto
     return (
         <motion.button
             onClick={handleDownload}
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(99, 102, 241, 0.4)" }}
             whileTap={{ scale: 0.95 }}
-            className="fixed bottom-8 right-8 flex items-center gap-2 px-6 py-4 rounded-full bg-[var(--md-sys-color-primary-container)] text-[var(--md-sys-color-on-primary-container)] shadow-lg hover:shadow-xl transition-shadow font-medium"
+            className="fixed bottom-8 right-8 flex items-center gap-3 px-8 py-4 rounded-full bg-[var(--gradient-primary)] text-white shadow-lg shadow-indigo-500/30 font-bold tracking-wide border border-white/10 backdrop-blur-sm"
         >
             <Download className="w-5 h-5" />
             <span>ダウンロード ({format})</span>

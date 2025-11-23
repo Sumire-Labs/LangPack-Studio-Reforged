@@ -47,12 +47,17 @@ export default function Sidebar({ activeTab, onTabChange }: SidebarProps) {
                 {menuItems.map((item) => {
                     const isActive = activeTab === item.id;
                     return (
-                        <button
+                        <motion.button
                             key={item.id}
                             onClick={() => onTabChange(item.id)}
+                            animate={{
+                                width: isCollapsed ? 56 : "100%",
+                                height: isCollapsed ? 56 : "auto",
+                                justifyContent: isCollapsed ? "center" : "flex-start",
+                                padding: isCollapsed ? 0 : 14
+                            }}
                             className={clsx(
-                                "w-full flex items-center gap-4 p-3.5 rounded-xl transition-all duration-200 relative group",
-                                isCollapsed ? "justify-center aspect-square" : "",
+                                "flex items-center gap-4 rounded-xl relative group",
                                 isActive
                                     ? "bg-[var(--md-sys-color-primary-container)] text-[var(--md-sys-color-on-primary-container)] shadow-lg shadow-indigo-500/10"
                                     : "text-[var(--md-sys-color-on-surface-variant)] hover:bg-[var(--md-sys-color-surface-variant)] hover:text-[var(--md-sys-color-on-surface)]"
@@ -74,16 +79,23 @@ export default function Sidebar({ activeTab, onTabChange }: SidebarProps) {
                                     className="absolute inset-0 rounded-xl border border-[var(--md-sys-color-primary)] opacity-20"
                                 />
                             )}
-                        </button>
+                        </motion.button>
                     );
                 })}
             </nav>
 
             <div className="p-4 border-t border-[var(--md-sys-color-outline)]">
-                <button className={clsx(
-                    "w-full flex items-center gap-4 p-3.5 rounded-xl text-[var(--md-sys-color-on-surface-variant)] hover:bg-[var(--md-sys-color-surface-variant)] hover:text-[var(--md-sys-color-on-surface)] transition-colors",
-                    isCollapsed ? "justify-center aspect-square" : ""
-                )}>
+                <motion.button
+                    animate={{
+                        width: isCollapsed ? 56 : "100%",
+                        height: isCollapsed ? 56 : "auto",
+                        justifyContent: isCollapsed ? "center" : "flex-start",
+                        padding: isCollapsed ? 0 : 14
+                    }}
+                    className={clsx(
+                        "flex items-center gap-4 rounded-xl text-[var(--md-sys-color-on-surface-variant)] hover:bg-[var(--md-sys-color-surface-variant)] hover:text-[var(--md-sys-color-on-surface)] transition-colors",
+                    )}
+                >
                     <Settings className="w-5 h-5 flex-shrink-0" />
                     {!isCollapsed && (
                         <motion.span
@@ -94,7 +106,7 @@ export default function Sidebar({ activeTab, onTabChange }: SidebarProps) {
                             設定
                         </motion.span>
                     )}
-                </button>
+                </motion.button>
             </div>
         </motion.aside>
     );
